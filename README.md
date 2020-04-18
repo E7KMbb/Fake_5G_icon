@@ -10,7 +10,7 @@
 由于本模块是通过对系统的systemui.apk进行修改,所以会与同样修改systemui.apk的模块产生冲突
 
 ### 链接
-* [GitHub](https://github.com/E7KMbb/Fake_5G_icon)
+* [GitHub](https://github.com/E7KMbb/Fake_5G_con)
 
 * [捐赠](https://docs.qq.com/doc/DWVJKWVVDWURQZUZK?disableReturnList=1&_from=1)
 

@@ -19,6 +19,10 @@ cleanup() {
   ui_print "    *   MMT Extended by Zackptg5 @ XDA   *"
   ui_print "    **************************************"
   ui_print " "
+  ui_print "    **************************************"
+  ui_print "    *E7KMbb by 依然的爱/Ai Sauce @ Coolapk*"
+  ui_print "    **************************************"
+  ui_print " "
 }
 
 device_check() {

@@ -33,12 +33,26 @@ print_modname() {
   len=`echo -n $MODNAME | wc -c`
   len=$((len + 2))
   local pounds=`printf "%${len}s" | tr ' ' '*'`
-  ui_print "$pounds"
-  ui_print " $MODNAME "
-  ui_print "$pounds"
-  ui_print "*******************"
-  ui_print " Powered by Magisk "
-  ui_print "*******************"
+  ui_print "    *******************************************"
+  for i in name version author; do
+    NEW=$(grep_prop $i $TMPDIR/module.prop)
+    [ "$i" == "author" ] && NEW="by ${NEW}"
+    CHARS=$((${#NEW}-$(echo "$NEW" | tr -cd "©®™" | wc -m)))
+    SPACES=""
+    if [ $CHARS -le 41 ]; then
+      for j in $(seq $(((41-$CHARS) / 2))); do
+        SPACES="${SPACES} "
+      done
+    fi
+    if [ $(((41-$CHARS) % 2)) -eq 1 ]; then 
+      ui_print "    *$SPACES$NEW${SPACES} *"
+    else
+      ui_print "    *$SPACES$NEW$SPACES*"
+    fi
+    [ "$i" == "name" ] && ui_print "    *******************************************"
+  done
+  ui_print "    *******************************************"
+  ui_print " "
 }
 
 ##############
@@ -159,7 +173,7 @@ fi
 # Remove stuffs that don't belong to modules
 rm -rf \
 $MODPATH/system/placeholder $MODPATH/customize.sh \
-$MODPATH/README.md $MODPATH/.git* 2>/dev/null
+$MODPATH/README.md $MODPATH/LICENSE $MODPATH/black.md $MODPATH/.git* 2>/dev/null
 
 ##############
 # Finalizing

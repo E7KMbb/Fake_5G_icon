@@ -1,35 +1,16 @@
-<h1 align="center">Magisk Module Template Extended (MMT-Ex)</h1>
+# Fake 5G icon
+### 依然的爱
 
-<div align="center">
-  <!-- Version -->
-    <img src="https://img.shields.io/badge/Version-v1.5-blue.svg?longCache=true&style=popout-square"
-      alt="Version" />
-  <!-- Last Updated -->
-    <img src="https://img.shields.io/badge/Updated-March 27, 2020-green.svg?longCache=true&style=flat-square"
-      alt="_time_stamp_" />
-</div>
+### 介绍
+将你状态栏的LTE与4G图标修改为5G
 
-<div align="center">
-  <strong>MMT Extended is the spiritual successor of Unity and makes magisk module creation easy. More details in the 
-    <a href="https://github.com/Zackptg5/MMT-Extended/wiki">wiki</a>.
-</div>
+### 注意
+本模块不支持可以用主题修改状态的深度定制ROM 即:(MIUI Flyme oneUI EMUI ColorOS FuntouchOS)
 
-<div align="center">
-  <h3>
-    <a href="https://github.com/Zackptg5/MMT-Extended">
-      Source Code
-    </a>
-    <span> | </span>
-    <a href="https://github.com/Zackptg5/MMT-Extended-Addons">
-      Addons Repository
-    </a>
-    <span> | </span>
-    <a href="https://forum.xda-developers.com/apps/magisk/magisk-module-template-extended-mmt-ex-t4029819">
-      XDA
-    </a>
-  </h3>
-</div>
+由于本模块是通过对系统的systemui.apk进行修改,所以会与同样修改systemui.apk的模块产生冲突
 
-### Usage
-- [Follow the directions here (DO NOT FORK)](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template)
-- Then follow instructions in [Wiki](https://github.com/Zackptg5/MMT-Extended/wiki)
+### 链接
+* [GitHub](https://github.com/E7KMbb/Fake_5G_icon)
+
+* [捐赠](https://docs.qq.com/doc/DWVJKWVVDWURQZUZK?disableReturnList=1&_from=1)
+

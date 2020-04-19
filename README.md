@@ -1,16 +1,21 @@
 # Fake 5G icon
-### 依然的爱
+### E7KMbb/AiSauce
+[中文说明](https://github.com/E7KMbb/Fake_5G_icon/blob/master/README_zh.md)
 
-### 介绍
-将你状态栏的LTE与4G图标修改为5G
+### Introduction
+Change the LTE and 4G icons in the status bar to 5G.
 
-### 注意
-本模块不支持可以用主题修改状态的深度定制ROM 即:(MIUI Flyme oneUI EMUI ColorOS FuntouchOS)
+### Precautions
+This module does not support in-depth custom ROMs that can be modified with themes (MIUI Flyme oneUI EMUI ColorOS FuntouchOS Nubiaui RedMagicOS)
 
-由于本模块是通过对系统的systemui.apk进行修改,所以会与同样修改systemui.apk的模块产生冲突
+Because this module is modified by the systemui.apk of the system, it will conflict with the module that also modifies the systemui.apk
 
-### 链接
+### Link
 * [GitHub](https://github.com/E7KMbb/Fake_5G_icon)
 
-* [捐赠](https://docs.qq.com/doc/DWVJKWVVDWURQZUZK?disableReturnList=1&_from=1)
+* [Donate](https://docs.qq.com/doc/DWVJKWVVDWURQZUZK?disableReturnList=1&_from=1)
 
+* [TG](https://t.me/AiSauce)
+
+### Updatelog
+- v2.1 Remove LG support,because it doesn't work

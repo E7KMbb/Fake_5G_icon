@@ -19,3 +19,4 @@ Because this module is modified by the systemui.apk of the system, it will confl
 
 ### Updatelog
 - v2.1 Remove LG support,because it doesn't work
+- v2.2 Optimize the script and delete some extra files

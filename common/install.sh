@@ -57,7 +57,7 @@ $P7Z a $TMPDIR/OPSystemUI.zip $addfile/res
 cp $TMPDIR/OPSystemUI.zip $MODPATH/system/priv-app/OPSystemUI/OPSystemUI.apk
 else
 ui_print "Your device is not supported yet! "
-ui_print "Please tell the developer where your system and SystemUI.apk is located"
+ui_print "Please tell the developer where your system and SystemUI.apk are located"
 abort "暂不支持你的设备！请告诉开发者你系统和SystemUI.apk所在目录"
 fi
 fi

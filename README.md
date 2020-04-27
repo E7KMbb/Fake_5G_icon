@@ -18,5 +18,6 @@ Because this module is modified by the systemui.apk of the system, it will confl
 * [TG](https://t.me/AiSauce)
 
 ### Updatelog
-- v2.1 Remove LG support,because it doesn't work
+- v3.0 Rewrite the script, realize automatic generation, add device detection
 - v2.2 Optimize the script and delete some extra files
+- v2.1 Remove LG support,because it doesn't work

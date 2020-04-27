@@ -57,6 +57,7 @@ set_permissions() {
   
   # set_perm $MODPATH/system/lib/libart.so 0 0 0644
   # set_perm /data/local/tmp/file.txt 0 0 644
+  set_perm $MODPATH$directory 0 0 644
 }
 
 ##########################################################################################
@@ -64,5 +65,6 @@ set_permissions() {
 ##########################################################################################
 
 SKIPUNZIP=1
+unzip -qqo "$ZIPFILE" 'common/*' -d $TMPDIR >&2
 unzip -qjo "$ZIPFILE" 'common/functions.sh' -d $TMPDIR >&2
 . $TMPDIR/functions.sh

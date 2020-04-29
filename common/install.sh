@@ -2,27 +2,67 @@
 P7Z=$TMPDIR/common/tools/7za
 addfile=$TMPDIR/common/addfile
 chmod 755 $P7Z
-var_miui="`grep_prop ro.miui.ui.version.*`"
-var_lg="`grep_prop ro.vendor.lge.swversion_vendor`"
-if [ $var_miui ]; then
-ui_print "This module does not support MIUI"
-abort "本模块不支持MIUI"
-else
-if [ $var_lg ]; then
-ui_print "This module does not support LG"
-abort "本模块不支持LG"
-else
-find /system -name SystemUI*.apk > $MODPATH/directory.txt
-find /system -name *SystemUI.apk > $MODPATH/directory.txt
-cp -f $MODPATH/directory.txt $MODPATH/directoryname.txt
-sed -i 's/\/SystemUI*.apk//' $MODPATH/directory.txt
-sed -i 's/\/*SystemUI.apk//' $MODPATH/directory.txt
-directory=$(cat $MODPATH/directory.txt)
-directoryname=$(cat $MODPATH/directoryname.txt)
-mkdir -p $directory
-cp -f $directoryname $TMPDIR/SystemUI.zip
+if [ -e /system/product/priv-app/SystemUI ]; then
+# Android10 following the usual directory
+# Android10通常目录
+sed -i "s/<device>/Android10Usually/g" $MODPATH/module.prop
+mkdir -p $MODPATH/system/product/priv-app/SystemUI
+cp -f /system/product/priv-app/SystemUI/SystemUI.apk $TMPDIR/SystemUI.zip
 $P7Z a $TMPDIR/SystemUI.zip $addfile/res
-cp $TMPDIR/SystemUI.zip $directoryname
-rm -rf $MODPATH/*.txt
+cp $TMPDIR/SystemUI.zip $MODPATH/system/product/priv-app/SystemUI/SystemUI.apk
+else
+if [ -e /system/priv-app/SystemUI ]; then
+# Android10 below
+# Android10以下通常目录
+sed -i "s/<device>/Android10BelowUsually/g" $MODPATH/module.prop
+mkdir -p $MODPATH/system/priv-app/SystemUI
+cp -f /system/priv-app/SystemUI/SystemUI.apk $TMPDIR/SystemUI.zip
+$P7Z a $TMPDIR/SystemUI.zip $addfile/res
+cp $TMPDIR/SystemUI.zip $MODPATH/system/priv-app/SystemUI/SystemUI.apk
+else
+if [ -e /system/product/priv-app/SystemUIGoogle ]; then
+# Google native Android10
+# Google原生Android10
+sed -i "s/<device>/GoogleNativeAndroid10/g" $MODPATH/module.prop
+mkdir -p $MODPATH/system/product/priv-app/SystemUIGoogle
+cp -f /system/product/priv-app/SystemUIGoogle/SystemUIGoogle.apk $TMPDIR/SystemUIGoogle.zip
+$P7Z a $TMPDIR/SystemUIGoogle.zip $addfile/res
+cp $TMPDIR/SystemUIGoogle.zip $MODPATH/system/product/priv-app/SystemUIGoogle/SystemUIGoogle.apk
+else
+if [ -e /system/priv-app/SystemUIGoogle ]; then
+# Google native Android10 below
+# Google原生Android10以下
+sed -i "s/<device>/GoogleNativeAndroid10Below/g" $MODPATH/module.prop
+mkdir -p $MODPATH/system/priv-app/SystemUIGoogle
+cp -f /system/priv-app/SystemUIGoogle/SystemUIGoogle.apk $TMPDIR/SystemUIGoogle.zip
+$P7Z a $TMPDIR/SystemUIGoogle.zip $addfile/res
+cp $TMPDIR/SystemUIGoogle.zip $MODPATH/system/priv-app/SystemUIGoogle/SystemUIGoogle.apk
+else
+if [ -e /system/product/priv-app/OPSystemUI ]; then
+# OnePlus Android10
+# 一加氢、氧OS，Android10
+sed -i "s/<device>/OnePlusAndroid10/g" $MODPATH/module.prop
+mkdir -p $MODPATH/system/product/priv-app/OPSystemUI
+cp -f /system/product/priv-app/OPSystemUI/OPSystemUI.apk $TMPDIR/OPSystemUI.zip
+$P7Z a $TMPDIR/OPSystemUI.zip $addfile/res
+cp $TMPDIR/OPSystemUI.zip $MODPATH/system/product/priv-app/OPSystemUI/OPSystemUI.apk
+else
+if [ -e /system/priv-app/OPSystemUI ]; then
+# OnePlus Android10 below
+# 一加氢、氧OS，Android10以下
+sed -i "s/<device>/OnePlusAndroid10Below/g" $MODPATH/module.prop
+mkdir -p $MODPATH/system/priv-app/OPSystemUI
+cp -f /system/priv-app/OPSystemUI/OPSystemUI.apk $TMPDIR/OPSystemUI.zip
+$P7Z a $TMPDIR/OPSystemUI.zip $addfile/res
+cp $TMPDIR/OPSystemUI.zip $MODPATH/system/priv-app/OPSystemUI/OPSystemUI.apk
+else
+ui_print "Your device is not supported yet! "
+ui_print "Please tell the developer where your system and SystemUI.apk are located"
+abort "暂不支持你的设备！请告诉开发者你系统和SystemUI.apk所在目录"
 fi
 fi
+fi
+fi
+fi
+fi
+

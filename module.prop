@@ -1,6 +1,6 @@
 id=Fake_5G_icon
 name=Fake 5G icon
-version=v3.0
-versionCode=30
+version=v3.1
+versionCode=31
 author=E7KMbb/AiSauce
 description=Change the LTE and 4G icons in the status bar to 5G.将状态栏的LTE和4G图标改为5G.

@@ -1,7 +1,13 @@
 #!/system/bin/sh
 P7Z=$TMPDIR/common/tools/7za
-addfile=$TMPDIR/common/addfile
 chmod 755 $P7Z
+ui_print " Select Style: 5G or 5GE "
+ui_print " 选择样式：5G或5GE "
+if $VKSEL; then
+addfile=$TMPDIR/common/5G
+else
+addfile=$TMPDIR/common/5GE
+fi
 if [ -e /system/product/priv-app/SystemUI ]; then
 # Android10 following the usual directory
 # Android10通常目录

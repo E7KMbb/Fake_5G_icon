@@ -3,9 +3,17 @@ P7Z=$TMPDIR/common/tools/7za
 chmod 755 $P7Z
 ui_print " Select Style: 5G or 5GE "
 ui_print " 选择样式：5G或5GE "
+ui_print " Vol Up = 5G "
+ui_print "  音量+键= 5G "
+ui_print "  Vol Down = 5GE "
+ui_print "  音量–键= 5GE "
 if $VKSEL; then
+ui_print " Selected 5G "
+ui_print " 已选择 5G "
 addfile=$TMPDIR/common/5G
 else
+ui_print " Selected 5GE "
+ui_print " 已选择 5GE "
 addfile=$TMPDIR/common/5GE
 fi
 if [ -e /system/product/priv-app/SystemUI ]; then

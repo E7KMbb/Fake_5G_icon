@@ -15,7 +15,7 @@ keytest() {
     ui_print "   再试一次:"
     timeout 3 keycheck
     local SEL=$?
-    [ $SEL -eq 143 ] && abort "   未检测到音量键!" || return 1
+    [ $SEL -eq 143 ] && abort "   Vol key not detected! 未检测到音量键!" || return 1
   fi
 }
 

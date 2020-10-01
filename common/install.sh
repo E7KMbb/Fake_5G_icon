@@ -8,75 +8,33 @@ ui_print "  音量+键= 5G "
 ui_print "  Vol Down = 5GE "
 ui_print "  音量–键= 5GE "
 if $VKSEL; then
-ui_print " Selected 5G "
-ui_print " 已选择 5G "
-addfile=$TMPDIR/common/5G
+  ui_print " Selected 5G "
+  ui_print " 已选择 5G "
+  addfile=$TMPDIR/common/5G
 else
-ui_print " Selected 5GE "
-ui_print " 已选择 5GE "
-addfile=$TMPDIR/common/5GE
-fi
-if [ -e /system/product/priv-app/SystemUI ]; then
-# Android10 following the usual directory
-# Android10通常目录
-sed -i "s/<device>/Android10Usually/g" $MODPATH/module.prop
-mkdir -p $MODPATH/system/product/priv-app/SystemUI
-cp -f /system/product/priv-app/SystemUI/SystemUI.apk $TMPDIR/SystemUI.zip
-$P7Z a $TMPDIR/SystemUI.zip $addfile/res
-cp $TMPDIR/SystemUI.zip $MODPATH/system/product/priv-app/SystemUI/SystemUI.apk
-else
-if [ -e /system/priv-app/SystemUI ]; then
-# Android10 below
-# Android10以下通常目录
-sed -i "s/<device>/Android10BelowUsually/g" $MODPATH/module.prop
-mkdir -p $MODPATH/system/priv-app/SystemUI
-cp -f /system/priv-app/SystemUI/SystemUI.apk $TMPDIR/SystemUI.zip
-$P7Z a $TMPDIR/SystemUI.zip $addfile/res
-cp $TMPDIR/SystemUI.zip $MODPATH/system/priv-app/SystemUI/SystemUI.apk
-else
-if [ -e /system/product/priv-app/SystemUIGoogle ]; then
-# Google native Android10
-# Google原生Android10
-sed -i "s/<device>/GoogleNativeAndroid10/g" $MODPATH/module.prop
-mkdir -p $MODPATH/system/product/priv-app/SystemUIGoogle
-cp -f /system/product/priv-app/SystemUIGoogle/SystemUIGoogle.apk $TMPDIR/SystemUIGoogle.zip
-$P7Z a $TMPDIR/SystemUIGoogle.zip $addfile/res
-cp $TMPDIR/SystemUIGoogle.zip $MODPATH/system/product/priv-app/SystemUIGoogle/SystemUIGoogle.apk
-else
-if [ -e /system/priv-app/SystemUIGoogle ]; then
-# Google native Android10 below
-# Google原生Android10以下
-sed -i "s/<device>/GoogleNativeAndroid10Below/g" $MODPATH/module.prop
-mkdir -p $MODPATH/system/priv-app/SystemUIGoogle
-cp -f /system/priv-app/SystemUIGoogle/SystemUIGoogle.apk $TMPDIR/SystemUIGoogle.zip
-$P7Z a $TMPDIR/SystemUIGoogle.zip $addfile/res
-cp $TMPDIR/SystemUIGoogle.zip $MODPATH/system/priv-app/SystemUIGoogle/SystemUIGoogle.apk
-else
-if [ -e /system/product/priv-app/OPSystemUI ]; then
-# OnePlus Android10
-# 一加氢、氧OS，Android10
-sed -i "s/<device>/OnePlusAndroid10/g" $MODPATH/module.prop
-mkdir -p $MODPATH/system/product/priv-app/OPSystemUI
-cp -f /system/product/priv-app/OPSystemUI/OPSystemUI.apk $TMPDIR/OPSystemUI.zip
-$P7Z a $TMPDIR/OPSystemUI.zip $addfile/res
-cp $TMPDIR/OPSystemUI.zip $MODPATH/system/product/priv-app/OPSystemUI/OPSystemUI.apk
-else
-if [ -e /system/priv-app/OPSystemUI ]; then
-# OnePlus Android10 below
-# 一加氢、氧OS，Android10以下
-sed -i "s/<device>/OnePlusAndroid10Below/g" $MODPATH/module.prop
-mkdir -p $MODPATH/system/priv-app/OPSystemUI
-cp -f /system/priv-app/OPSystemUI/OPSystemUI.apk $TMPDIR/OPSystemUI.zip
-$P7Z a $TMPDIR/OPSystemUI.zip $addfile/res
-cp $TMPDIR/OPSystemUI.zip $MODPATH/system/priv-app/OPSystemUI/OPSystemUI.apk
-else
-ui_print "Your device is not supported yet! "
-ui_print "Please tell the developer where your system and SystemUI.apk are located"
-abort "暂不支持你的设备！请告诉开发者你系统和SystemUI.apk所在目录"
-fi
-fi
-fi
-fi
-fi
+  ui_print " Selected 5GE "
+  ui_print " 已选择 5GE "
+  addfile=$TMPDIR/common/5GE
 fi
 
+find /system -name SystemUI.apk > $MODPATH/dir.txt
+if [ ! -s $MODPATH/dir.txt ]; then
+   find /system -name *SystemUI.apk > $MODPATH/dir.txt
+   if [ ! -s $MODPATH/dir.txt ]; then
+      find /system -name SystemUI*.apk > $MODPATH/dir.txt
+      if [ ! -s $MODPATH/dir.txt ]; then
+         ui_print "Your device is not supported ! "
+         abort "不支持你的设备 !"
+      fi
+   fi
+fi
+apkname=$(cat $MODPATH/dir.txt | awk -F '/' '{print $NF}')
+sed -i 's/\/'$apkname'//' $MODPATH/dir.txt
+dir=$(sed -n '1p' $MODPATH/dir.txt)
+mkdir -p $MODPATH$dir
+cp -f $dir/$apkname $TMPDIR/SystemUI.zip
+$P7Z a $TMPDIR/SystemUI.zip $addfile/res
+cp $TMPDIR/SystemUI.zip $MODPATH$dir/$apkname
+
+rm -rf $MODPATH/dir.txt
+rm -rf $MODPATH/README_zh.md

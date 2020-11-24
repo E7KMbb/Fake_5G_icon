@@ -2,11 +2,6 @@
 P7Z=$TMPDIR/common/tools/7za
 chmod 755 $P7Z
 
-if grep ro.miui.ui.version.* /system/build.prop | awk -F '=' '{print$2}'; then
-   ui_print "This module does not support MIUI ! "
-   abort "本模块不支持MIUI !"
-fi
-
 ui_print " Select Style: 5G or 5GE "
 ui_print " 选择样式：5G或5GE "
 ui_print " Vol Up = 5G "

@@ -18,6 +18,7 @@ Because this module is modified by the systemui.apk of the system, it will confl
 * [TG](https://t.me/AiSauce)
 
 ### Updatelog
+- v4.1 Delete detection
 - v4.0 Rewrite the script, Implement automation directory detection, add device detection
 - v3.1 Join 5GE style
 - <S>v3.0 Rewrite the script, realize automatic generation, add device detection</S>

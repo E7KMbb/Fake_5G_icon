@@ -20,8 +20,10 @@ fi
 
 find /system -name SystemUI.apk > $MODPATH/dir.txt
 if [ ! -s $MODPATH/dir.txt ]; then
+   rm -rf $MODPATH/dir.txt
    find /system -name *SystemUI.apk > $MODPATH/dir.txt
    if [ ! -s $MODPATH/dir.txt ]; then
+      rm -rf $MODPATH/dir.txt
       find /system -name SystemUI*.apk > $MODPATH/dir.txt
       if [ ! -s $MODPATH/dir.txt ]; then
          ui_print "Your device is not supported ! "

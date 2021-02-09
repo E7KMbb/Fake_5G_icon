@@ -57,16 +57,16 @@ fi
 
 # Find dir
 find /system -name SystemUI.apk > $MODPATH/dir.txt
-find_dir_text=$(cat $MODPATH/dir.txt)
-if [[ ! ${find_dir_tex} ]]; then
+find_dir_text=$(cat $MODPATH/dir.txt | wc -l)
+if [ ${find_dir_text} -eq 0 ]; then
    rm -rf $MODPATH/dir.txt
    find /system -name *SystemUI.apk > $MODPATH/dir.txt
-   find_dir_text=$(cat $MODPATH/dir.txt)
-   if [[ ! ${find_dir_tex} ]]; then
+   find_dir_text=$(cat $MODPATH/dir.txt | wc -l)
+   if [ ${find_dir_text} -eq 0 ]; then
       rm -rf $MODPATH/dir.txt
       find /system -name SystemUI*.apk > $MODPATH/dir.txt
-      find_dir_text=$(cat $MODPATH/dir.txt)
-      if [[ ! ${find_dir_tex} ]]; then
+      find_dir_text=$(cat $MODPATH/dir.txt | wc -l)
+      if [ ${find_dir_text} -eq 0 ]; then
          abort "${LANG_WARNING}"
       fi
    fi
@@ -84,6 +84,7 @@ cp $TMPDIR/SystemUI.zip $MODPATH$dir/$apkname
 # Delete unnecessary files
 rm -rf $MODPATH/file
 rm -rf $MODPATH/dir.txt
+rm -rf $MODPATH/*.ini
 rm -rf $MODPATH/*.md
 
 set_perm_recursive $MODPATH 0 0 0755 0644

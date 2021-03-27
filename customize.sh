@@ -56,20 +56,25 @@ else
 fi
 
 # Find dir
-find /system -name SystemUI.apk > $MODPATH/dir.txt
-find_dir_text=$(cat $MODPATH/dir.txt | wc -l)
-if [ ${find_dir_text} -eq 0 ]; then
-   rm -rf $MODPATH/dir.txt
-   find /system -name *SystemUI.apk > $MODPATH/dir.txt
+for partition in system vendor product system_ext; do
+   find /${partition} -name SystemUI.apk > $MODPATH/dir.txt
    find_dir_text=$(cat $MODPATH/dir.txt | wc -l)
    if [ ${find_dir_text} -eq 0 ]; then
       rm -rf $MODPATH/dir.txt
-      find /system -name SystemUI*.apk > $MODPATH/dir.txt
+      find /${partition} -name *SystemUI.apk > $MODPATH/dir.txt
       find_dir_text=$(cat $MODPATH/dir.txt | wc -l)
       if [ ${find_dir_text} -eq 0 ]; then
-         abort "${LANG_WARNING}"
+         rm -rf $MODPATH/dir.txt
+         find /${partition} -name SystemUI*.apk > $MODPATH/dir.txt
+         find_dir_text=$(cat $MODPATH/dir.txt | wc -l)
       fi
    fi
+   if [ ${find_dir_text} -gt 0 ]; then
+   break
+   fi
+done
+if [ ${find_dir_text} -eq 0 ]; then
+    abort "${LANG_WARNING}"
 fi
 
 # Inject file

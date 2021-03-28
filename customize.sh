@@ -81,7 +81,16 @@ fi
 apkname=$(cat $MODPATH/dir.txt | awk -F '/' '{print $NF}')
 sed -i 's/\/'$apkname'//' $MODPATH/dir.txt
 dir=$(sed -n '1p' $MODPATH/dir.txt)
-mkdir -p $MODPATH$dir
+if [ `grep -c "vendor" $MODPATH/dir.txt` -ne '0' ]; then
+   mkdir -p $MODPATH/system$dir
+elif [ `grep -c "product" $MODPATH/dir.txt` -ne '0' ]; then
+   mkdir -p $MODPATH/system$dir
+elif [ `grep -c "system_ext" $MODPATH/dir.txt` -ne '0' ]; then
+   mkdir -p $MODPATH/system$dir
+else
+   mkdir -p $MODPATH$dir
+fi
+
 cp -f $dir/$apkname $TMPDIR/SystemUI.zip
 $P7Z a $TMPDIR/SystemUI.zip $addfile/res
 cp $TMPDIR/SystemUI.zip $MODPATH$dir/$apkname

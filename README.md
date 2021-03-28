@@ -18,6 +18,7 @@ Because this module is modified by the systemui.apk of the system, it will confl
 * [TG](https://t.me/AiSauce)
 
 ### Updatelog
+- v6.0 Optimize the installation logic to support more devices
 - v5.1 Change detection mode
 - v5.0 Refactor, fix bug, support Android11
 - v4.1 Delete detection
